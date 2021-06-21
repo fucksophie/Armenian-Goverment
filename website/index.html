@@ -32,8 +32,9 @@
 			</div>
 
 			<div class="text">
-				Version 1 - Made the designs.
-				Version 2 - Actually made the app!
+				Version 1 - Made the designs.<br>
+				Version 2 - Actually made the app!<br>
+				Version 2.5 - Fixed most types of spam!<br>
 			</div>
 		</div>
 		<ol class="content">
@@ -69,27 +70,38 @@
 				formData.append("image", image.files[0]);
 				formData.append("title", title.value);
 
+				image.value = title.value = "";
+
 				const fetch_response = await fetch("/submit", {
 					method: "POST",
 					body: formData
 				})
-
-				const response = await fetch_response.json()
-
-				if(response.error) {
+				
+				const raw_response = await fetch_response.text();
+				try {
+					const response = JSON.parse(raw_response);
+					
+					if(response.error) {
+						Swal.fire(
+							'Error!',
+							response.message,
+							'error',
+						)
+					} else {
+						Swal.fire(
+							'Success!',
+							response.message,
+							'success'
+						).then((result) => {
+							window.location.reload();
+						})
+					}
+				} catch(err) {
 					Swal.fire(
-						'Error!',
-						response.message,
-						'error',
-					)
-				} else {
-					Swal.fire(
-						'Success!',
-						response.message,
- 						'success'
-					).then((result) => {
-						window.location.reload();
-					})
+							'Error!',
+							raw_response,
+							'error',
+						)
 				}
 			})
 		</script>

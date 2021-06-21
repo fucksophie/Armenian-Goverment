@@ -3,7 +3,7 @@ import ejs from 'ejs';
 import chalk from 'chalk';
 import path from 'path';
 import busboy from "connect-busboy";
-
+import rateLimit from "express-rate-limit";
 import { addPost, getPosts, Post } from './util/posts';
 import { writeFileSync } from 'fs';
 
@@ -26,7 +26,10 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/submit', function (req, res) {
+app.post('/submit', rateLimit({
+  windowMs: 30000,
+  max: 1
+}), function (req, res) {
   let title = "";
   let image: Buffer | null = null;
 
