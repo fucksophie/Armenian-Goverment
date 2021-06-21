@@ -1,0 +1,39 @@
+.controls {
+	width: 184px;
+	height: 145px;
+
+	left: 14px;
+	top: 51px;
+	position: absolute;
+}
+
+.controls .description {
+	width: 176px;
+	top: 26px;
+
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.controls .image {
+	width: 81px;
+	height: 16px;
+	left: 61px;
+	top: 3px;
+	
+	font-size: 14px;
+	line-height: 16px;
+
+	cursor: pointer;
+}
+
+.controls .submit {
+	width: 61px;
+	height: 19px;
+
+	font-size: 18px;
+	line-height: 21px;
+
+	cursor: pointer;
+	position: absolute;
+}

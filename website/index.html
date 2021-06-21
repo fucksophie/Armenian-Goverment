@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<%- include('head'); %>
+
+	<body>
+		<div class="branding">
+			<div class="title">
+				Armenian Goverment
+			</div>
+
+			<div class="version">
+				Version 1
+			</div>
+		</div>
+
+		<div class="controls">
+			<input class="description" id="title" placeholder="Post title"></input>
+			
+			<input type="file"
+       			id="image" name="image"
+       			accept="image/png">
+
+			
+			<div class="submit" id="submit">
+				Submit
+			</div>
+		</div>
+
+		<div class="news">
+			<div class="title">
+				News
+			</div>
+
+			<div class="text">
+				Version 1 - Made the designs.
+				Version 2 - Actually made the app!
+			</div>
+		</div>
+		<ol class="content">
+			<% posts.forEach(function(post) { %>
+				<li class="post">
+					<div class="title">
+						<%= post.title %>
+					</div>
+
+					<img class="image" src="<%= post.image %>"></img>
+				</li>
+			<% }); %>
+		</ol>
+
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+			const title = document.getElementById("title");
+			const submit = document.getElementById("submit");
+			const image = document.getElementById("image");
+
+			submit.addEventListener("click", async () => {
+
+				if(!image.files.length) {
+					Swal.fire(
+						'Error!',
+						'Missing a image!',
+						'error',
+					)
+				}
+
+				let formData = new FormData();
+
+				formData.append("image", image.files[0]);
+				formData.append("title", title.value);
+
+				const fetch_response = await fetch("/submit", {
+					method: "POST",
+					body: formData
+				})
+
+				const response = await fetch_response.json()
+
+				if(response.error) {
+					Swal.fire(
+						'Error!',
+						response.message,
+						'error',
+					)
+				} else {
+					Swal.fire(
+						'Success!',
+						response.message,
+ 						'success'
+					).then((result) => {
+						window.location.reload();
+					})
+				}
+			})
+		</script>
+	</body>
+</html>

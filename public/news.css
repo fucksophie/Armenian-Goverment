@@ -1,0 +1,25 @@
+.news {
+	width: 282px;
+	height: 294px;
+	left: 14px;
+	top: 196px;
+	position: absolute;
+}
+
+.news .title {
+	width: 46px;
+	height: 21px;
+	left: 118px;
+
+	font-size: 18px;
+	line-height: 21px;
+}
+
+.news .text {
+	width: 178px;
+	height: 15px;
+	top: 22px;
+	
+	font-size: 13px;
+	line-height: 15px;
+}

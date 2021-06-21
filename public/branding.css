@@ -1,0 +1,23 @@
+.branding {
+	width: 282px;
+	height: 294px;
+	left: 14px;
+	position: absolute;
+}
+
+.branding .title {
+	width: 226px;
+	height: 28px;
+
+	font-size: 24px;
+	line-height: 28px;
+}
+
+.branding .version {
+	width: 59px;
+	height: 16px;
+	top: 22px;
+
+	font-size: 14px;
+	line-height: 16px;
+}

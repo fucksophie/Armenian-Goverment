@@ -1,0 +1,37 @@
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.content {
+    left: 334px;
+    top: 7px;
+    position: absolute;
+
+	columns: 2;
+	gap: 3em;
+}
+
+.content .post {
+	position: relative;
+	top: 18px;
+	height: 160px;
+	break-inside: avoid;
+}
+
+.content .post .image {
+	width: 232px;
+	height: 130px;
+	object-fit: cover;
+	width: 100%;
+}
+
+.content .post .title {
+	position: relative;
+	font-size: 17px;
+	line-height: 21px;
+	overflow-wrap: break-word;
+}
+
